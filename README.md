@@ -25,7 +25,7 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
 3. Change SSH port from 22 to 2200
   - Run `sudo nano /etc/ssh/sshd_config`
   - Change the port from 22 to 2200
-  - Confirm by running `ssh -i ~/.ssh/udacity_key.rsa -p 2200 ubuntu@3.122.95.117`
+  - Confirm by running `ssh -i ~/.ssh/id_rsa -p 2200 ubuntu@3.122.95.117`
   
 4. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
   - `sudo ufw allow 2200/tcp`
@@ -43,7 +43,7 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
   - Run `sudo nano /etc/ssh/sshd_config`
   - Change `PermitRootLogin without-password` line to `PermitRootLogin no`
   - Restart ssh with `sudo service ssh restart`
-  - Now you are only able to login using `ssh -i ~/.ssh/rsa_id.rsa -p 2200 grader@3.122.95.117`
+  - Now you are only able to login using `ssh -i ~/.ssh/id_rsa -p 2200 grader@3.122.95.117`
  
 8. Install Apache
   - `sudo apt-get install apache2`
@@ -60,7 +60,7 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
   - `sudo mkdir catalog`
   - Change owner of the newly created catalog folder `sudo chown -R grader:grader catalog`
   - `cd /catalog`
-  - Clone your project from github `git clone https://github.com/rrjoson/udacity-item-catalog.git catalog`
+  - Clone your project from github `git clone https://github.com/MotazBellah/catalog_movies.git catalog`
   - Create a catalog.wsgi file, then add this inside:
   ```
   import sys
@@ -94,7 +94,6 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
   ```
   <VirtualHost *:80>
       ServerName 3.122.95.117
-      ServerAlias ec2-35-167-27-204.us-west-2.compute.amazonaws.com
       ServerAdmin admin@3.122.95.117
       WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
       WSGIProcessGroup catalog
