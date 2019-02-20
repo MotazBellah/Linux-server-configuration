@@ -4,21 +4,19 @@
 
 Take a baseline installation of a Linux distribution on a virtual machine and prepare it to host your web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers.
 
-- IP address: 35.167.27.204
+- IP address: 3.122.95.117
 
 - Accessible SSH port: 2200
-
-- Application URL: http://ec2-35-167-27-204.us-west-2.compute.amazonaws.com/
 
 ### Walkthrough
 
 1. Create new user named grader and give it the permission to sudo
-  - SSH into the server through `ssh -i ~/.ssh/udacity_key.rsa root@35.167.27.204`
+  - SSH into the server through `ssh -i ~/.ssh/ss.rsa ubuntu@3.122.95.117`
   - Run `$ sudo adduser grader` to create a new user named grader
   - Create a new file in the sudoers directory with `sudo nano /etc/sudoers.d/grader`
   - Add the following text `grader ALL=(ALL:ALL) ALL`
   - Run `sudo nano /etc/hosts`
-  - Prevent the error `sudo: unable to resolve host` by adding this line `127.0.1.1 ip-10-20-52-12`
+  - Prevent the error `sudo: unable to resolve host` by adding this line `127.0.1.1 ip-172-26-7-49`
    
 2. Update all currently installed packages
   - Download package lists with `sudo apt-get update`
@@ -27,7 +25,7 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
 3. Change SSH port from 22 to 2200
   - Run `sudo nano /etc/ssh/sshd_config`
   - Change the port from 22 to 2200
-  - Confirm by running `ssh -i ~/.ssh/udacity_key.rsa -p 2200 root@35.167.27.204`
+  - Confirm by running `ssh -i ~/.ssh/udacity_key.rsa -p 2200 ubuntu@3.122.95.117`
   
 4. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
   - `sudo ufw allow 2200/tcp`
@@ -45,7 +43,7 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
   - Run `sudo nano /etc/ssh/sshd_config`
   - Change `PermitRootLogin without-password` line to `PermitRootLogin no`
   - Restart ssh with `sudo service ssh restart`
-  - Now you are only able to login using `ssh -i ~/.ssh/udacity_key.rsa -p 2200 grader@35.167.27.20`
+  - Now you are only able to login using `ssh -i ~/.ssh/rsa_id.rsa -p 2200 grader@3.122.95.117`
  
 8. Install Apache
   - `sudo apt-get install apache2`
@@ -95,9 +93,9 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
   - Paste this code: 
   ```
   <VirtualHost *:80>
-      ServerName 35.167.27.204
+      ServerName 3.122.95.117
       ServerAlias ec2-35-167-27-204.us-west-2.compute.amazonaws.com
-      ServerAdmin admin@35.167.27.204
+      ServerAdmin admin@3.122.95.117
       WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
       WSGIProcessGroup catalog
       WSGIScriptAlias / /var/www/catalog/catalog.wsgi
@@ -133,17 +131,9 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
   - Change create engine line in your `__init__.py` and `database_setup.py` to: 
   `engine = create_engine('postgresql://catalog:password@localhost/catalog')`
   - `python /var/www/catalog/catalog/database_setup.py`
-  - Make sure no remote connections to the database are allowed. Check if the contents of this file `sudo nano /etc/postgresql/9.3/main/pg_hba.conf` looks like this:
-  ```
-  local   all             postgres                                peer
-  local   all             all                                     peer
-  host    all             all             127.0.0.1/32            md5
-  host    all             all             ::1/128                 md5
-  ```
   
 16. Restart Apache 
   - `sudo service apache2 restart`
   
-17. Visit site at [http://35.167.27.204](http://35.167.27.204)
+17. Visit site at [http://3.122.95.117](http://3.122.95.117)
 
-**Special Thanks to *[iliketomatoes](https://github.com/iliketomatoes)* for a very helpful README**
