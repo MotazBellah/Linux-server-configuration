@@ -8,6 +8,8 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
 
 - Accessible SSH port: 2200
 
+ `ssh -i ~/.ssh/id_rsa -p 2200 grader@3.122.95.117`
+
 ### Walkthrough
 
 1. Create new user named grader and give it the permission to sudo
@@ -25,7 +27,7 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
 3. Change SSH port from 22 to 2200
   - Run `sudo nano /etc/ssh/sshd_config`
   - Change the port from 22 to 2200
-  - Confirm by running `ssh -i ~/.ssh/id_rsa -p 2200 ubuntu@3.122.95.117`
+  - Confirm by running `ssh -i ~/.ssh/id_rsa -p 2200 grader@3.122.95.117`
   
 4. Configure the Uncomplicated Firewall (UFW) to only allow incoming connections for SSH (port 2200), HTTP (port 80), and NTP (port 123)
   - `sudo ufw allow 2200/tcp`
