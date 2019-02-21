@@ -136,3 +136,8 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
   
 17. Visit site at [http://3.122.95.117](http://3.122.95.117)
 
+### Resources
+
+- http://flask.pocoo.org/docs/1.0/deploying/
+- https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps
+- https://www.youtube.com/watch?v=_80H2WIuA7w&t=850s
