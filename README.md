@@ -23,6 +23,8 @@ Take a baseline installation of a Linux distribution on a virtual machine and pr
 2. Update all currently installed packages
   - Download package lists with `sudo apt-get update`
   - Fetch new versions of packages with `sudo apt-get upgrade`
+  - active automatic update `sudo apt-get install unattended-upgrades`
+                            `sudo dpkg-reconfigure unattended-upgrades`
 
 3. Change SSH port from 22 to 2200
   - Run `sudo nano /etc/ssh/sshd_config`
