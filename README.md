@@ -1,4 +1,4 @@
-# udacity-linux-server-configuration
+# linux-server-configuration
 
 ### Project Description
 
